@@ -43,14 +43,14 @@ const saveRates = cron.schedule("0 * * * *", async() => {
             })
             return [data[1], data[2], data[3], price, data[4]];
         })
-
+/*
         var eth = await getCoinrate(ftxPAXG, "ETH").then(async(data) => {
             var price = await getPrice(ftxPAXG, "ETH").then(data => {
                 return data
             })
             return [data[1], data[2], data[3], price, data[4]];
         })
-
+*/
         db.serialize(() => {
                 //insertRawUSDT(usdt[0], usdt[1], usdt[2], usdt[3], usdt[4]);
                 //console.log("USDT inserted");
@@ -60,7 +60,7 @@ const saveRates = cron.schedule("0 * * * *", async() => {
                 //console.log("SNX inserted");
                 insertRawAAVE(aave[0], aave[1], aave[2], aave[3], aave[4]);
                 //console.log("AAVE inserted");
-                insertRawETH(eth[0], eth[1], eth[2], eth[3], eth[4]);
+                //insertRawETH(eth[0], eth[1], eth[2], eth[3], eth[4]);
             })
             //db.close();
             //console.log("inserted data on DB " + usdt[1])

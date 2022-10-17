@@ -1,5 +1,7 @@
+import { ErrorDescription } from "@ethersproject/abi/lib/interface";
 import {  Router } from "express";
-import {readTable} from "../database";
+import { lastFundRate } from "../apis/ftx-snx";
+import {readTable, readFunds} from "../database";
 
 const router = Router()
 
@@ -27,8 +29,22 @@ router.get("/create/table/:name/:yields",(req, res) =>{
 
 } )
 
+router.get("/getFR/:table/:last", (req,res) =>{
+    const table = req.params.table;
+    const last = req.params.last;
+    var rates = readFunds(table, last);
+    res.json({average:last, rate: rates})
+})
+
 router.get("/db", (req,res)=>{
     res.sendFile("fundrates.db", {root:"."});
+})
+
+router.get("/data/:table/:last", (req,res) => {
+    const table = req.params.table;
+    const last = req.params.last;
+    var rates = readFunds(table, last);
+    res.json({average:last, rate:rates})
 })
 
 export default router;

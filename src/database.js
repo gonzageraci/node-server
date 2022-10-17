@@ -65,6 +65,22 @@ function readTable(table){
     });
 }
 
+async function readFunds(table, last) {
+    var data = [];
+    return new Promise(resolve=>{
+        db.all(`SELECT rate from ${table} limit ${last}`, [], (err, rows)=>{
+            if(err){
+                return console.error(err.message);
+            }
+            rows.forEach((row)=>{
+                data.push(row);
+            });
+
+            resolve(data);
+        });
+    });
+}
+
 
 // ejemplo de uso
 
@@ -90,5 +106,6 @@ module.exports = {
     insertRawCAKE,
     insertRawUSD,
     insertRawETH,
-    readTable
+    readTable,
+    readFunds
 }

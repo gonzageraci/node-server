@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "nodemon src/index.js --exec babel-node",
-        "start": "npm start"
+        "start": "node src/index.js --exec babel-node"
     },
     "author": "JGTech",
     "license": "ISC",
@@ -26,4 +26,6 @@
         "@babel/core": "^7.18.9",
         "@babel/node": "^7.18.9",
         "@babel/preset-env": "^7.18.9",
-       
+        "nodemon": "^2.0.19"
+    }
+}
